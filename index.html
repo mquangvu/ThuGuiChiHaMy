@@ -2,40 +2,37 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thư Gửi Chị</title>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Dancing Script', cursive;
-      background-image: url('https://www.parkregisbirmingham.co.uk/wp-content/uploads/2018/08/park-regis-birmingham-enjoy-canals.jpg'); /* Nền thư cổ điển */
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow: hidden;
+      height: 100vh;
+      font-family: 'Dancing Script', cursive;
+      background-image: url('https://i.imgur.com/Pl9txdL.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
     }
 
     .container {
       background-color: rgba(255, 255, 255, 0.85);
       border-radius: 10px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-      max-width: 900px;
-      padding: 50px;
+      padding: 20px;
+      max-width: 90%;
+      width: 100%;
       text-align: left;
-      line-height: 1.8;
-      font-size: 22px;
-      animation: fadeIn 2s ease-in-out;
-      overflow-y: auto;
-      max-height: 95vh;
+      font-size: 18px;
     }
 
     h1 {
-      font-size: 40px;
+      font-size: 36px;
       color: #6d4c41;
       margin-bottom: 20px;
       text-align: center;
@@ -44,7 +41,7 @@
     .signature {
       text-align: right;
       margin-top: 40px;
-      font-size: 26px;
+      font-size: 22px;
       color: #5d4037;
     }
 
@@ -57,7 +54,7 @@
     }
 
     .gallery img {
-      width: 180px;
+      max-width: 100%;
       height: auto;
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
@@ -68,14 +65,23 @@
       text-align: center;
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
+    @media only screen and (max-width: 768px) {
+      .container {
+        padding: 15px;
+        font-size: 16px;
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .signature {
+        font-size: 20px;
+      }
+
+      .gallery {
+        flex-direction: column;
+        gap: 10px;
       }
     }
   </style>
@@ -102,11 +108,10 @@
 
     <!-- Phần nhạc MP3 -->
     <div class="audio">
-      <audio autoplay loop controls>
-        <source src="https://raw.githubusercontent.com/mquangvu/THuGuiChiHaMy/main/Vietsub_Thap_R_i_T_Do_-_LBI_L_i_B_-_LBI.mp3" type="audio/mp3">
+      <audio autoplay loop muted>
+        <source src="https://raw.githubusercontent.com/mquangvu/ThuGuiChiHaMy/main/Vietsub_Thap_R_i_T_Do_-_LBI_L_i_B_-_LBI.mp3" type="audio/mp3">
         Your browser does not support the audio element.
       </audio>
-
     </div>
   </div>
 </body>
