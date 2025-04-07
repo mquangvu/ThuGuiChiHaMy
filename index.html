@@ -1,118 +1,125 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thư Gửi Chị</title>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      font-family: 'Dancing Script', cursive;
-      background-image: url('https://www.parkregisbirmingham.co.uk/wp-content/uploads/2018/08/park-regis-birmingham-enjoy-canals.jpg'); /* Nền thư cổ điển */
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thiệp Chia Tay</title>
+    <style>
+        /* Cài đặt font chữ và kiểu chữ */
+        body {
+            font-family: 'Dancing Script', cursive;
+            background-color: #f0e6f6;
+            color: #333;
+            text-align: center;
+            padding-top: 50px;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .container {
-      background-color: rgba(255, 255, 255, 0.85);
-      border-radius: 10px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-      padding: 20px;
-      max-width: 90%;
-      width: 100%;
-      text-align: left;
-      font-size: 18px;
-    }
+        /* Cài đặt nền cho thiệp */
+        .container {
+            background-color: white;
+            width: 70%;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-    h1 {
-      font-size: 36px;
-      color: #6d4c41;
-      margin-bottom: 20px;
-      text-align: center;
-    }
+        /* Cài đặt hiệu ứng hoa rơi */
+        .falling-petals {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
 
-    .signature {
-      text-align: right;
-      margin-top: 40px;
-      font-size: 22px;
-      color: #5d4037;
-    }
+        .petal {
+            position: absolute;
+            top: -10px;
+            width: 10px;
+            height: 10px;
+            background-color: #ff4081;
+            border-radius: 50%;
+            opacity: 0;
+            animation: fall 5s linear infinite, rotate 5s linear infinite;
+        }
 
-    .gallery {
-      margin-top: 30px;
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+        @keyframes fall {
+            0% {
+                top: -10px;
+                opacity: 1;
+            }
+            100% {
+                top: 100%;
+                opacity: 0;
+            }
+        }
 
-    .gallery img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
 
-    .audio {
-      margin-top: 40px;
-      text-align: center;
-    }
+        /* Các hiệu ứng cho phần nội dung thiệp */
+        h1 {
+            font-size: 36px;
+            color: #9b4d96;
+        }
 
-    @media only screen and (max-width: 768px) {
-      .container {
-        padding: 15px;
-        font-size: 16px;
-      }
+        p {
+            font-size: 18px;
+            margin-top: 20px;
+        }
 
-      h1 {
-        font-size: 28px;
-      }
-
-      .signature {
-        font-size: 20px;
-      }
-
-      .gallery {
-        flex-direction: column;
-        gap: 10px;
-      }
-    }
-  </style>
+        /* Cài đặt âm thanh */
+        audio {
+            margin-top: 30px;
+            border: none;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Gửi Chị</h1>
-    <p>
-      Chị à,<br><br>
-      Khi ngày chia tay đến, em vẫn không tin là mình sẽ phải nói lời tạm biệt với người chị đã luôn ở bên, dẫn dắt và tiếp thêm sức mạnh cho em suốt chặng đường qua.<br><br>
-      Cảm ơn chị vì những lần lắng nghe, những cái ôm động viên, và cả những khoảnh khắc giản dị nhưng đầy yêu thương. Em sẽ nhớ từng nụ cười, từng ánh mắt, từng lần hai chị em trò chuyện thật lâu dù chỉ là những chuyện không đâu.<br><br>
-      Dù sau này mỗi người một hướng đi, em vẫn luôn mang theo những ký ức đẹp đẽ mà chị đã để lại trong lòng em. Mong chị sẽ tiếp tục toả sáng, sống thật hạnh phúc và luôn giữ vững trái tim đầy yêu thương ấy.
-    </p>
 
-    <div class="gallery">
-      <img src="https://i.imgur.com/Y3bR9kO.jpg" alt="Ảnh kỷ niệm 1">
-      <img src="https://i.imgur.com/QdL0ZDN.jpg" alt="Ảnh kỷ niệm 2">
-      <img src="https://i.imgur.com/eq9g0HT.jpg" alt="Ảnh kỷ niệm 3">
+    <!-- Khung chứa nội dung thiệp -->
+    <div class="container">
+        <h1>Chia Tay Người Chị Thân Yêu</h1>
+        <p>Cảm ơn chị vì tất cả những kỷ niệm đẹp. Dù chúng ta không còn là đồng nghiệp, nhưng tình cảm này sẽ mãi không phai.</p>
+        <p>Chúc chị luôn thành công và hạnh phúc trên con đường mới!</p>
+        
+        <!-- Âm thanh sẽ tự động phát sau khi tải trang -->
+        <iframe src="500-milliseconds-of-silence" allow="autoplay" id="audio"></iframe>
+        <audio id="player" autoplay controls>
+            <source src="Vietsub_Thap_R_i_T_Do_-_LBI_L_i_B_-_LBI.mp3" type="audio/mp3">
+            Trình duyệt của bạn không hỗ trợ thẻ audio.
+        </audio>
     </div>
 
-    <div class="signature">
-      — Em
-    </div>
+    <!-- Phần tử cho hiệu ứng hoa rơi -->
+    <div class="falling-petals"></div>
 
-    <!-- Phần nhạc MP3 -->
-    <div class="audio">
-      <audio autoplay loop controls>
-        <source src="https://raw.githubusercontent.com/mquangvu/ThuGuiChiHaMy/main/Vietsub_Thap_R_i_T_Do_-_LBI_L_i_B_-_LBI.mp3" type="audio/mp3">
-        Your browser does not support the audio element.
-      </audio>
-    </div>
-  </div>
+    <script>
+        // Tạo hiệu ứng hoa rơi
+        const petalsCount = 50;
+        for (let i = 0; i < petalsCount; i++) {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            document.querySelector('.falling-petals').appendChild(petal);
+
+            // Vị trí ngẫu nhiên cho mỗi cánh hoa
+            const startPositionX = Math.random() * 100; // Vị trí ngang ngẫu nhiên (0-100%)
+            const animationDelay = Math.random() * 2; // Độ trễ ngẫu nhiên
+
+            petal.style.left = `${startPositionX}%`;
+            petal.style.animationDelay = `${animationDelay}s`;
+        }
+    </script>
+
 </body>
 </html>
