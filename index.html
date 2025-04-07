@@ -3,103 +3,165 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Thư Gửi Chị Hà My</title>
+  <title>Gửi Chị Hà My</title>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
+      padding: 0;
+      font-family: 'Dancing Script', cursive;
       background: url('https://www.parkregisbirmingham.co.uk/wp-content/uploads/2018/08/park-regis-birmingham-enjoy-canals.jpg') no-repeat center center fixed;
       background-size: cover;
-      font-family: 'Dancing Script', cursive;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       min-height: 100vh;
-      padding: 20px;
     }
 
     .envelope-wrapper {
       position: relative;
-      width: 380px;
-      max-width: 90%;
-      background-color: #fff;
-      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
-      border: 3px solid #d34b4b;
-      border-radius: 4px;
+      width: 360px;
+      height: 260px;
+      cursor: pointer;
+      perspective: 1000px;
     }
 
-    .flap-triangle {
+    .envelope {
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      border-radius: 6px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+      border: 4px solid transparent;
+      border-image: linear-gradient(45deg, red, blue, red) 1;
+    }
+
+    .flap {
       position: absolute;
-      top: -60px;
+      top: 0;
       left: 0;
       width: 100%;
-      height: 60px;
-      background: #fff3f3;
+      height: 50%;
+      background: #fce2e2;
       clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
-      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+      transform-origin: top center;
+      transition: transform 0.8s ease;
       z-index: 3;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
     }
 
-    .letter-content {
-      padding: 30px 25px;
-      font-size: 20px;
-      line-height: 1.6;
+    .letter {
+      position: absolute;
+      bottom: 0;
+      left: 5%;
+      right: 5%;
+      background: #fffaf4;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+      transform: translateY(100%);
+      transition: transform 1s ease;
+      z-index: 2;
+    }
+
+    .envelope.open .flap {
+      transform: rotateX(-180deg);
+    }
+
+    .envelope.open .letter {
+      transform: translateY(0%);
+    }
+
+    .letter h2 {
+      margin-top: 0;
+      font-size: 26px;
+    }
+
+    .letter p {
+      margin: 10px 0;
+      font-size: 18px;
       color: #333;
     }
 
-    .letter-content img {
-      max-width: 100%;
-      border-radius: 8px;
-      margin: 15px 0;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    .heart {
+      color: #e25555;
+      font-size: 24px;
+      display: inline-block;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
     }
 
     .sticker {
       position: absolute;
-      top: -20px;
-      right: -10px;
+      top: 10px;
+      left: 10px;
       width: 60px;
-      transform: rotate(15deg);
-      z-index: 4;
+      transform: rotate(-15deg);
+    }
+
+    .photo {
+      margin-top: 15px;
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
     }
 
     audio {
       display: none;
     }
 
-    @media (max-width: 480px) {
-      .letter-content {
-        font-size: 18px;
-        padding: 20px;
+    @media (max-width: 400px) {
+      .envelope-wrapper {
+        width: 95%;
+      }
+
+      .letter {
+        font-size: 16px;
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="envelope-wrapper" onclick="playMusic()">
-    <div class="flap-triangle"></div>
-    <img src="https://cdn-icons-png.flaticon.com/512/1484/1484844.png" class="sticker" alt="sticker" />
-    <div class="letter-content">
-      <h2>Gửi chị Hà My ❤️</h2>
-      <p>Chị là người chị tuyệt vời nhất mà em từng có.</p>
-      <p>Cảm ơn chị vì những ngày tháng tươi đẹp, những lời động viên và sự chân thành vô giá.</p>
-      <img src="https://i.pinimg.com/originals/ff/b3/eb/ffb3eb9080d66d83294a6495e9c9a7f3.jpg" alt="Chi Ha My">
-      <p>Dù chúng ta không còn làm cùng nhau, em mong chị luôn vui vẻ và hạnh phúc trên hành trình riêng của mình.</p>
-      <p>Thương mến,<br><em>Quang Vũ</em></p>
+<div class="envelope-wrapper" onclick="openEnvelope()">
+  <div class="envelope" id="env">
+    <div class="flap"></div>
+    <img class="sticker" src="https://cdn-icons-png.flaticon.com/512/889/889140.png" alt="Sticker">
+    <div class="letter">
+      <h2>Gửi chị Hà My 💌</h2>
+      <p>Chị là người chị tuyệt vời nhất mà em từng có <span class="heart">❤️</span></p>
+      <p>Cảm ơn chị vì những tháng ngày tươi đẹp, những lời động viên và sự chân thành vô giá.</p>
+      <p>Dù có thể không còn làm cùng nhau, em mong rằng chị luôn vui vẻ và hạnh phúc trên hành trình riêng của mình.</p>
+      <p>Thân mến,<br><em>Quang Vũ</em></p>
+      <img class="photo" src="https://i.imgur.com/NUK2Ngs.jpg" alt="Ảnh kỷ niệm">
     </div>
   </div>
+</div>
 
-  <audio id="music" autoplay>
-    <source src="Vietsub_Thap_R_i_T_Do_-_LBI_L_i_B_-_LBI.mp3" type="audio/mp3">
-  </audio>
+<!-- Âm thanh -->
+<audio id="music" autoplay>
+  <source src="Vietsub_Thap_R_i_T_Do_-_LBI_L_i_B_-_LBI.mp3" type="audio/mp3">
+</audio>
 
-  <script>
-    function playMusic() {
-      var music = document.getElementById("music");
-      music.play().catch(err => console.log("Autoplay blocked."));
+<script>
+  function openEnvelope() {
+    const env = document.getElementById("env");
+    const music = document.getElementById("music");
+    if (!env.classList.contains("open")) {
+      env.classList.add("open");
+      setTimeout(() => {
+        music.play().catch(() => console.log("Autoplay bị chặn"));
+      }, 600);
     }
-  </script>
+  }
+</script>
 
 </body>
 </html>
