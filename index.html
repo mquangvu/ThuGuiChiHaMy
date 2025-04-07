@@ -3,123 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thiệp Chia Tay</title>
+    <title>Phong Bì Thư Chia Tay</title>
     <style>
-        /* Cài đặt font chữ và kiểu chữ */
+        /* Cài đặt hình nền */
         body {
-            font-family: 'Dancing Script', cursive;
-            background-color: #f0e6f6;
-            color: #333;
-            text-align: center;
-            padding-top: 50px;
-            position: relative;
-            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://www.parkregisbirmingham.co.uk/wp-content/uploads/2018/08/park-regis-birmingham-enjoy-canals.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
 
-        /* Cài đặt nền cho thiệp */
-        .container {
-            background-color: white;
-            width: 70%;
-            margin: 0 auto;
-            padding: 30px;
+        /* Phong bì thư */
+        .envelope {
+            width: 300px;
+            height: 200px;
+            background-color: #f7e0e0;
             border-radius: 10px;
+            position: relative;
+            cursor: pointer;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease-in-out;
         }
 
-        /* Cài đặt hiệu ứng hoa rơi */
-        .falling-petals {
+        /* Nắp phong bì */
+        .envelope .flap {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
+            height: 40%;
+            background-color: #f9b3b3;
+            border-radius: 10px 10px 0 0;
+            transform-origin: top center;
+            transition: transform 0.5s ease;
+        }
+
+        /* Nội dung thư */
+        .letter {
+            display: none;
+            background-color: #fff;
+            padding: 20px;
             height: 100%;
-            pointer-events: none;
-        }
-
-        .petal {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
             position: absolute;
-            top: -10px;
-            width: 10px;
-            height: 10px;
-            background-color: #ff4081;
-            border-radius: 50%;
-            opacity: 0;
-            animation: fall 5s linear infinite, rotate 5s linear infinite;
-        }
-
-        @keyframes fall {
-            0% {
-                top: -10px;
-                opacity: 1;
-            }
-            100% {
-                top: 100%;
-                opacity: 0;
-            }
-        }
-
-        @keyframes rotate {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* Các hiệu ứng cho phần nội dung thiệp */
-        h1 {
-            font-size: 36px;
-            color: #9b4d96;
-        }
-
-        p {
+            top: 20%;
+            left: 10%;
+            right: 10%;
             font-size: 18px;
-            margin-top: 20px;
+            text-align: center;
+            color: #333;
+            transition: opacity 1s ease-in-out;
         }
 
-        /* Cài đặt âm thanh */
+        /* Hiệu ứng khi phong bì mở ra */
+        .envelope.open .flap {
+            transform: rotateX(180deg);
+        }
+
+        .envelope.open .letter {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Âm thanh */
         audio {
-            margin-top: 30px;
-            border: none;
+            display: none;
         }
     </style>
 </head>
 <body>
 
-    <!-- Khung chứa nội dung thiệp -->
-    <div class="container">
-        <h1>Chia Tay Người Chị Thân Yêu</h1>
-        <p>Cảm ơn chị vì tất cả những kỷ niệm đẹp. Dù chúng ta không còn là đồng nghiệp, nhưng tình cảm này sẽ mãi không phai.</p>
-        <p>Chúc chị luôn thành công và hạnh phúc trên con đường mới!</p>
-        
-        <!-- Âm thanh sẽ tự động phát sau khi tải trang -->
-        <iframe src="500-milliseconds-of-silence" allow="autoplay" id="audio"></iframe>
-        <audio id="player" autoplay controls>
-            <source src="Vietsub_Thap_R_i_T_Do_-_LBI_L_i_B_-_LBI.mp3" type="audio/mp3">
-            Trình duyệt của bạn không hỗ trợ thẻ audio.
-        </audio>
+    <!-- Phong Bì Thư -->
+    <div class="envelope" onclick="openEnvelope()">
+        <div class="flap"></div>
+        <div class="letter">
+            <h1>Chia Tay Người Chị Thân Yêu</h1>
+            <p>Cảm ơn chị vì tất cả những kỷ niệm đẹp. Dù chúng ta không còn là đồng nghiệp, nhưng tình cảm này sẽ mãi không phai.</p>
+            <p>Chúc chị luôn thành công và hạnh phúc trên con đường mới!</p>
+        </div>
     </div>
 
-    <!-- Phần tử cho hiệu ứng hoa rơi -->
-    <div class="falling-petals"></div>
+    <!-- Âm thanh khi mở thư -->
+    <audio id="player" autoplay>
+        <source src="Vietsub_Thap_R_i_T_Do_-_LBI_L_i_B_-_LBI.mp3" type="audio/mp3">
+        Trình duyệt của bạn không hỗ trợ thẻ audio.
+    </audio>
 
     <script>
-        // Tạo hiệu ứng hoa rơi
-        const petalsCount = 50;
-        for (let i = 0; i < petalsCount; i++) {
-            const petal = document.createElement('div');
-            petal.classList.add('petal');
-            document.querySelector('.falling-petals').appendChild(petal);
+        // Mở phong bì thư khi nhấn
+        function openEnvelope() {
+            const envelope = document.querySelector('.envelope');
+            const audioPlayer = document.getElementById('player');
 
-            // Vị trí ngẫu nhiên cho mỗi cánh hoa
-            const startPositionX = Math.random() * 100; // Vị trí ngang ngẫu nhiên (0-100%)
-            const animationDelay = Math.random() * 2; // Độ trễ ngẫu nhiên
+            // Đổi trạng thái mở phong bì
+            envelope.classList.toggle('open');
 
-            petal.style.left = `${startPositionX}%`;
-            petal.style.animationDelay = `${animationDelay}s`;
+            // Nếu phong bì đã mở, phát âm thanh
+            if (envelope.classList.contains('open')) {
+                // Kiểm tra xem âm thanh có đang phát không
+                if (audioPlayer.paused) {
+                    audioPlayer.play();
+                }
+            }
         }
     </script>
-
 </body>
 </html>
