@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phong Bì Thư Chia Tay</title>
-    <!-- Liên kết đến Google Fonts để tải Dancing Script -->
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -13,117 +12,112 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            margin: 0;
+            padding: 40px 20px;
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
         }
 
-        /* Phong bì thư */
         .envelope {
-            width: 400px;
-            height: 300px; /* Tăng chiều cao của phong bì */
+            width: 90%;
+            max-width: 600px;
             background-color: #f7e0e0;
             border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
             position: relative;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: transform 0.5s ease-in-out;
-            transform-style: preserve-3d;
             overflow: hidden;
+            transition: all 0.6s ease-in-out;
         }
 
-        /* Nắp phong bì */
-        .envelope .flap {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 50%;
+        .flap {
+            height: 80px;
             background-color: #f9b3b3;
             border-radius: 15px 15px 0 0;
+            transition: transform 0.6s ease;
             transform-origin: top center;
-            transform: rotateX(0deg);
-            transition: transform 0.5s ease;
         }
 
-        /* Nội dung thư */
-        .letter {
-            display: none;
-            background-color: #fff;
-            padding: 20px 30px; /* Điều chỉnh padding để tăng không gian */
-            box-sizing: border-box;
-            height: auto; /* Tự động điều chỉnh chiều cao dựa trên nội dung */
-            width: 100%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 15px;
-            font-size: 18px;
-            text-align: center;
-            color: #333;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            overflow-y: auto; /* Cho phép cuộn dọc nếu văn bản dài */
-            max-height: 80%; /* Giới hạn chiều cao tối đa để tránh cuộn quá dài */
-        }
-
-        /* Hiệu ứng khi phong bì mở ra */
         .envelope.open .flap {
             transform: rotateX(180deg);
         }
 
+        .letter {
+            padding: 30px;
+            background-color: white;
+            border-radius: 0 0 15px 15px;
+            font-size: 20px;
+            text-align: center;
+            color: #333;
+            font-family: 'Dancing Script', cursive;
+            display: none;
+            animation: fadeIn 1.2s ease-in-out forwards;
+        }
+
         .envelope.open .letter {
             display: block;
-            opacity: 1;
         }
 
-        /* Âm thanh */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         audio {
             display: none;
-        }
-
-        /* Áp dụng font Dancing Script */
-        h1, p {
-            font-family: 'Dancing Script', cursive;
         }
     </style>
 </head>
 <body>
 
-    <!-- Phong Bì Thư -->
-    <div class="envelope" onclick="openEnvelope()">
-        <div class="flap"></div>
-        <div class="letter">
-            <h1>Chia Tay Người Chị Thân Yêu</h1>
-            <p>Cảm ơn chị vì tất cả những kỷ niệm đẹp. Dù chúng ta không còn là đồng nghiệp, nhưng tình cảm này sẽ mãi không phai.</p>
-            <p>Chúc chị luôn thành công và hạnh phúc trên con đường mới!</p>
-        </div>
+<div class="envelope" onclick="openEnvelope()">
+    <div class="flap"></div>
+    <div class="letter">
+        <h1>Gửi Người Chị Thân Yêu</h1>
+        <p>
+            Cảm ơn chị vì những ngày tháng tuyệt vời, những lần tâm sự chân thành, những nụ cười và cả những lần cùng nhau vượt qua khó khăn.
+        </p>
+        <p>
+            Dù sau này mỗi người một hành trình, em tin rằng kỷ niệm đẹp này sẽ không bao giờ phai nhạt. 
+            Em thật sự biết ơn vì đã có chị trong quãng đường này.
+        </p>
+        <p>
+            Chúc chị luôn vững vàng, thành công, và hạnh phúc trên con đường phía trước.
+        </p>
+        <p style="margin-top: 30px;">
+            Thân thương,<br>
+            Một đứa em luôn quý mến chị.
+        </p>
     </div>
+</div>
 
-    <!-- Âm thanh khi mở thư -->
-    <audio id="player" autoplay>
-        <source src="Vietsub_Thap_R_i_T_Do_-_LBI_L_i_B_-_LBI.mp3" type="audio/mp3">
-        Trình duyệt của bạn không hỗ trợ thẻ audio.
-    </audio>
+<!-- Âm thanh -->
+<audio id="player" autoplay>
+    <source src="Vietsub_Thap_R_i_T_Do_-_LBI_L_i_B_-_LBI.mp3" type="audio/mp3">
+</audio>
 
-    <script>
-        // Mở phong bì thư khi nhấn
-        function openEnvelope() {
-            const envelope = document.querySelector('.envelope');
-            const audioPlayer = document.getElementById('player');
+<script>
+    function openEnvelope() {
+        const envelope = document.querySelector('.envelope');
+        const audio = document.getElementById('player');
 
-            // Đổi trạng thái mở phong bì
-            envelope.classList.toggle('open');
-
-            // Nếu phong bì đã mở, phát âm thanh
-            if (envelope.classList.contains('open')) {
-                // Kiểm tra xem âm thanh có đang phát không
-                if (audioPlayer.paused) {
-                    audioPlayer.play();
-                }
-            }
+        if (!envelope.classList.contains('open')) {
+            envelope.classList.add('open');
+            setTimeout(() => {
+                // Play audio sau một chút delay để chắc chắn tương tác đã diễn ra
+                audio.play().catch(() => {
+                    console.log("Audio autoplay bị chặn");
+                });
+            }, 500);
         }
-    </script>
+    }
+</script>
 
 </body>
 </html>
