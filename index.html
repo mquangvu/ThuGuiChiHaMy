@@ -18,33 +18,50 @@
       padding: 20px;
     }
 
-    .envelope-wrapper {
+    .container {
       position: relative;
       width: 380px;
       max-width: 90%;
-      background-color: #fff;
-      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
-      border: 3px solid #d34b4b;
-      border-radius: 4px;
+      cursor: pointer;
     }
 
-    .flap-triangle {
-      position: absolute;
-      top: -60px;
-      left: 0;
+    .envelope-img {
       width: 100%;
-      height: 60px;
-      background: #fff3f3;
-      clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
-      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
-      z-index: 3;
+      border-radius: 6px;
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+      transition: opacity 1s ease;
     }
 
     .letter-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #fffaf4;
       padding: 30px 25px;
       font-size: 20px;
       line-height: 1.6;
       color: #333;
+      border-radius: 8px;
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+      display: none;
+      z-index: 2;
+    }
+
+    .letter-line {
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .letter-line:nth-child(1) { animation-delay: 0.5s; }
+    .letter-line:nth-child(2) { animation-delay: 1.5s; }
+    .letter-line:nth-child(3) { animation-delay: 3s; }
+    .letter-line:nth-child(4) { animation-delay: 4.5s; }
+    .letter-line:nth-child(5) { animation-delay: 6s; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .letter-content img {
@@ -52,6 +69,9 @@
       border-radius: 8px;
       margin: 15px 0;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+      animation-delay: 3s;
     }
 
     .sticker {
@@ -60,7 +80,7 @@
       right: -10px;
       width: 60px;
       transform: rotate(15deg);
-      z-index: 4;
+      z-index: 3;
     }
 
     audio {
@@ -77,16 +97,19 @@
 </head>
 <body>
 
-  <div class="envelope-wrapper" onclick="playMusic()">
-    <div class="flap-triangle"></div>
+  <div class="container" onclick="openLetter()">
+    <img src="scarlet-red-envelope-rsvp-closed-650x650.jpg" alt="Envelope" class="envelope-img" id="envelopeImg">
     <img src="https://cdn-icons-png.flaticon.com/512/1484/1484844.png" class="sticker" alt="sticker" />
-    <div class="letter-content">
-      <h2>Gửi chị Hà My ❤️</h2>
-      <p>Chị là người chị tuyệt vời nhất mà em từng có.</p>
-      <p>Cảm ơn chị vì những ngày tháng tươi đẹp, những lời động viên và sự chân thành vô giá.</p>
-      <img src="https://i.pinimg.com/originals/ff/b3/eb/ffb3eb9080d66d83294a6495e9c9a7f3.jpg" alt="Chi Ha My">
-      <p>Dù chúng ta không còn làm cùng nhau, em mong chị luôn vui vẻ và hạnh phúc trên hành trình riêng của mình.</p>
-      <p>Thương mến,<br><em>Quang Vũ</em></p>
+    
+    <div class="letter-content" id="letter">
+      <div class="letter-line"><h2>Gửi chị Hà My ❤️</h2></div>
+      <div class="letter-line"><p>Chị là người chị tuyệt vời nhất mà em từng có.</p></div>
+      <div class="letter-line"><p>Cảm ơn chị vì những ngày tháng tươi đẹp, những lời động viên và sự chân thành vô giá.</p></div>
+      <div class="letter-line">
+        <img src="https://i.pinimg.com/originals/ff/b3/eb/ffb3eb9080d66d83294a6495e9c9a7f3.jpg" alt="Chi Ha My">
+      </div>
+      <div class="letter-line"><p>Dù chúng ta không còn làm cùng nhau, em mong chị luôn vui vẻ và hạnh phúc trên hành trình riêng của mình.</p></div>
+      <div class="letter-line"><p>Thương mến,<br><em>Quang Vũ</em></p></div>
     </div>
   </div>
 
@@ -95,9 +118,19 @@
   </audio>
 
   <script>
-    function playMusic() {
-      var music = document.getElementById("music");
-      music.play().catch(err => console.log("Autoplay blocked."));
+    function openLetter() {
+      const envelope = document.getElementById("envelopeImg");
+      const letter = document.getElementById("letter");
+      const music = document.getElementById("music");
+
+      envelope.style.opacity = "0";
+      setTimeout(() => {
+        letter.style.display = "block";
+      }, 1000);
+
+      music.play().catch(() => {
+        console.log("Autoplay bị chặn bởi trình duyệt.");
+      });
     }
   </script>
 
