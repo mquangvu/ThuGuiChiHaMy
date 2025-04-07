@@ -63,16 +63,9 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
-    .video {
+    .audio {
       margin-top: 40px;
       text-align: center;
-    }
-
-    .video iframe {
-      width: 100%;
-      height: 315px;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
 
     @keyframes fadeIn {
@@ -107,28 +100,13 @@
       — Em
     </div>
 
-    <!-- Phần video YouTube với autoplay -->
-    <div class="video">
-      <iframe 
-        id="musicFrame"
-        src="https://www.youtube.com/embed/Icq1mZFekTg?autoplay=1&mute=1&loop=1&playlist=Icq1mZFekTg" 
-        title="Thấp Rồi Tự Đổ"
-        frameborder="0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-      </iframe>
+    <!-- Phần nhạc MP3 -->
+    <div class="audio">
+      <audio autoplay loop>
+        <source src="https://raw.githubusercontent.com/mquangvu/THuGuiChiHaMy/main/Vietsub_Thap_R_i_T_Do_-_LBI_L_i_B_-_LBI.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+      </audio>
     </div>
   </div>
-
-  <!-- JavaScript để đảm bảo autoplay hoạt động -->
-  <script>
-    window.addEventListener("load", function () {
-      const frame = document.getElementById("musicFrame");
-      // Trick: Reload video after short delay to ensure autoplay
-      setTimeout(() => {
-        frame.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-      }, 1000);
-    });
-  </script>
 </body>
 </html>
