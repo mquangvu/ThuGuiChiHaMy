@@ -23,7 +23,7 @@
         /* Phong bì thư */
         .envelope {
             width: 400px;
-            height: 250px;
+            height: 300px; /* Tăng chiều cao */
             background-color: #f7e0e0;
             border-radius: 15px;
             position: relative;
@@ -52,9 +52,10 @@
         .letter {
             display: none;
             background-color: #fff;
-            padding: 20px;
+            padding: 30px; /* Tăng padding để có không gian cho văn bản */
             box-sizing: border-box;
             height: 100%;
+            width: 100%; /* Đảm bảo khung có chiều rộng đầy đủ */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 15px;
             position: absolute;
@@ -67,6 +68,7 @@
             color: #333;
             opacity: 0;
             transition: opacity 1s ease-in-out;
+            overflow-y: auto; /* Thêm cuộn dọc nếu văn bản dài */
         }
 
         /* Hiệu ứng khi phong bì mở ra */
