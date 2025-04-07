@@ -23,7 +23,7 @@
         /* Phong bì thư */
         .envelope {
             width: 400px;
-            height: 300px; /* Tăng chiều cao */
+            height: 300px; /* Tăng chiều cao của phong bì */
             background-color: #f7e0e0;
             border-radius: 15px;
             position: relative;
@@ -52,23 +52,19 @@
         .letter {
             display: none;
             background-color: #fff;
-            padding: 20px 30px; /* Điều chỉnh padding */
+            padding: 20px 30px; /* Điều chỉnh padding để tăng không gian */
             box-sizing: border-box;
-            height: 100%;
+            height: auto; /* Tự động điều chỉnh chiều cao dựa trên nội dung */
             width: 100%;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 15px;
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            bottom: 0;
             font-size: 18px;
             text-align: center;
             color: #333;
             opacity: 0;
             transition: opacity 1s ease-in-out;
             overflow-y: auto; /* Cho phép cuộn dọc nếu văn bản dài */
+            max-height: 80%; /* Giới hạn chiều cao tối đa để tránh cuộn quá dài */
         }
 
         /* Hiệu ứng khi phong bì mở ra */
